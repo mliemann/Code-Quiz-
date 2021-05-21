@@ -13,7 +13,26 @@ var score = 0
 var secondsLeft = 30;
 
 highscores.onclick = function scores(){
+  all.innerHTML=null;
+      all1 = document.createElement('div');
+      all2 = document.createElement('h1');
+      all2.setAttribute("id", "name");
+      all2.classList.add("finalscores1")
+      all3 = document.createElement('h1');
+      all3.setAttribute("id", "score");
+      all3.classList.add("finalscores1")
+      all.appendChild(all1);
+      all1.appendChild(all2);
+      all1.appendChild(all3);
+      var all4a = localStorage.getItem("all4a");
+      var savescore1 = localStorage.getItem("savescore1");
 
+      if (!all4a || !savescore1) {
+        return;
+      }
+
+      all2.textContent = all4a;
+      all3.textContent = savescore1;
 }
 
 test1.onclick= function start(){
@@ -21,6 +40,12 @@ test1.onclick= function start(){
   displayTime()
   startTimer()
    Q1();
+   all1 = document.createElement('div');
+   all2 = document.createElement('h1');
+   all2.innerHTML = "You Lost. Your Score is: 0" 
+   all2.classList.add("#questionInput")
+   all.appendChild(all1);
+   all1.appendChild(all2)
 }
 
 function deductTimeBy(seconds) {
@@ -243,16 +268,13 @@ function Q1() {
           answer2.remove()
           answer3.remove()
           answer4.remove()
-          deductTimeBy(10)
           getScore()
-
         }
         answer2.onclick =function wronganswer(){
           answer1.remove()
           answer2.remove()
           answer3.remove()
           answer4.remove()
-          deductTimeBy(10)
           getScore()
         }
         answer3.onclick =function rightanswer(){
@@ -270,7 +292,6 @@ function Q1() {
           answer2.remove()
           answer3.remove()
           answer4.remove()
-          deductTimeBy(10)
           getScore()
         
       }
@@ -284,9 +305,48 @@ function Q1() {
       all.innerHTML = null;
       all1 = document.createElement('div');
       all2 = document.createElement('h1');
-      all2.innerHTML = "Your Score is: " +finalscore
-      all2.classList.add("#questionInput")
+      all4= document.createElement('input')
+      all3 =document.createElement('button');
+      all2.innerHTML = "Your Score is: " +finalscore;
+      all2.classList.add("#questionInput");
+      all3.classList.add('startbutton2');
+      all4.classList.add("input")
       all.appendChild(all1);
-      all1.appendChild(all2)
+      all.appendChild(all4)
+      all1.appendChild(all2);
+      all.appendChild(all3);
+      all3.innerHTML = "Save your score?";
+      all3.onclick= function savescore(event){
+      event.preventDefault();
+      var all4a = document.querySelector(".input").value
+      var savescore1= finalscore
+      localStorage.setItem("all4a", all4a)
+      localStorage.setItem("savescore1", JSON.stringify(savescore1));
+      console.log(all4a)
+      console.log(savescore1)
+      renderscore()
+    
+      function renderscore() {all.innerHTML=null;
+      all1 = document.createElement('div');
+      all2 = document.createElement('h1');
+      all2.setAttribute("id", "name");
+      all2.classList.add("finalscores1")
+      all3 = document.createElement('h1');
+      all3.setAttribute("id", "score");
+      all3.classList.add("finalscores1")
+      all.appendChild(all1);
+      all1.appendChild(all2);
+      all1.appendChild(all3);
+      var all4a = localStorage.getItem("all4a");
+      var savescore1 = localStorage.getItem("savescore1");
+
+      if (!all4a || !savescore1) {
+        return;
+      }
+
+      all2.textContent = all4a;
+      all3.textContent = savescore1;
+         }
+      }
     }
-}
+  }

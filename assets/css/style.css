@@ -59,6 +59,14 @@ main{
     margin: auto;
 }
 
+.finalscores1{
+    display: inline-block;
+    border-style: dashed;
+    border-width: 3px;
+    width: 50%;
+    margin: auto;
+}
+
 .starter p {
     padding: 150px 0 ;
 }
@@ -75,6 +83,30 @@ main{
 }
 
 #startbutton1:hover{
+    background-color: #376438;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    width: 15%;
+}
+
+.startbutton2 { 
+    background-color: #4CAF50;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    width: 15%;
+}
+
+.startbutton2:hover{
     background-color: #376438;
     border: none;
     padding: 15px 32px;
@@ -109,4 +141,30 @@ main{
     color: cornsilk;
     background-color: darkmagenta;
     font-size: 15px;
+}
+
+input{
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #bfbfbf;
+    box-sizing: border-box;
+    font-weight: 700;
+    font-size: 24px;
+    transition: .3s ease;
+    -moz-transition: .3s ease;
+    -webkit-transition: .3s ease;
+    -o-transition: .3s ease;
+    -ms-transition: .3s ease;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    -webkit-appearance: none;
+    background: 0 0;
+}
+
+.starter h1{
+    border-style: dashed;
+    border-width: 3px;
+    width: 50%;
+    margin: auto;
 }
