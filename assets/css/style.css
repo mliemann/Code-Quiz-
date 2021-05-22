@@ -60,7 +60,8 @@ main{
 }
 
 .finalscores1{
-    display: inline-block;
+    display: flex;
+    flex: 0 0 50%;
     border-style: dashed;
     border-width: 3px;
     width: 50%;
@@ -167,4 +168,5 @@ input{
     border-width: 3px;
     width: 50%;
     margin: auto;
+    display: flex;
 }
