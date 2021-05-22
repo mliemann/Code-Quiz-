@@ -11,7 +11,7 @@ var LQ=document.querySelector("#listQuestions")
 var namearray = []
 var scorearray =[]
 var score = 0
-var secondsLeft = 30;
+var secondsLeft = 40;
 init()
 
 console.log(namearray)
@@ -87,6 +87,7 @@ function startTimer() {
     all2.classList.add("#questionInput")
     all.appendChild(all1);
     all1.appendChild(all2)
+    getScore()
   }
 
   //question4
@@ -320,7 +321,8 @@ function Q1() {
 
 //compute final score
 function getScore(){
-  var finalscore = score * 25
+  if (secondsLeft === 0){var finalscore = 0}
+  else{ var finalscore = score * 25}
   console.log(finalscore)
   var finalseconds = secondsLeft;
   clearTimeout(totalTimeInterval);
@@ -330,9 +332,8 @@ function getScore(){
   all2 = document.createElement('h1');
   all4= document.createElement('input')
   all3 =document.createElement('button');
-  all2.innerHTML = "Your Score is: " +finalscore;
   all2.classList.add("#questionInput");
-  all2.textContent= "Please enter your initials"
+  all2.textContent= "Your Score is: " + finalscore +" Please enter your initials to save:" 
   all3.classList.add('startbutton2');
   all4.classList.add("input")
   all.appendChild(all1);
@@ -349,7 +350,7 @@ function getScore(){
   if (all4a === "" || savescore1 === "") {
     return;
   }
-  var gamername = all4a + " " +savescore1
+  var gamername = "User: " +all4a + " Score of: " +savescore1
   
   scorearray.push(gamername);
   localStorage.setItem("scorearray", JSON.stringify (scorearray))
