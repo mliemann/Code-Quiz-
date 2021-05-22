@@ -12,29 +12,37 @@ var namearray = []
 var scorearray =[]
 var score = 0
 var secondsLeft = 30;
+init()
+
 console.log(namearray)
+
+function init() {
+  var storedScores = JSON.parse(localStorage.getItem("scorearray"))
+
+  if (storedScores !== null ) {
+    scorearray= storedScores
+}
+
+}
 //renderhighscores
 highscores.onclick = function scores(){
   all.innerHTML=null;
-      all1 = document.createElement('div');
-      all2 = document.createElement('h1');
-      all2.setAttribute("id", "name");
-      all2.classList.add("finalscores1")
-      all3 = document.createElement('h1');
-      all3.setAttribute("id", "score");
-      all3.classList.add("finalscores1")
-      all.appendChild(all1);
-      all1.appendChild(all2)
-      all1.appendChild(all3);
-      var all4a = localStorage.getItem("all4a");
-      var savescore1 = localStorage.getItem("savescore1");
-
-      if (!all4a || !savescore1) {
-        return;
-      }
-
-      all2.textContent = all4a;
-      all3.textContent = savescore1;
+  all1 = document.createElement('div');
+  all.appendChild(all1);
+  
+  for (var i = 0; i < scorearray.length; i++) {
+    var scorearray1 = scorearray[i];
+  
+    console.log(scorearray1)
+  
+    all2 = document.createElement('h1');
+    all2.setAttribute("id", "name");
+    all2.classList.add("finalscores1")
+    
+    all2.innerHTML = scorearray1;
+    all2.setAttribute("data-index", i);
+    all1.appendChild(all2);
+    }
 
 }
 
@@ -310,85 +318,62 @@ function Q1() {
 }
 
 
-function init() {
-  var storedNames = JSON.parse(localStorage.getItem("namearray"));
-  var storedScores = JSON.parse(localStorage.getItem("scorearray"))
+//compute final score
+function getScore(){
+  var finalscore = score * 25
+  console.log(finalscore)
+  var finalseconds = secondsLeft;
+  clearTimeout(totalTimeInterval);
+  timer.textContent =  "Clock stopped at: " + finalseconds ;
+  all.innerHTML = null;
+  all1 = document.createElement('div');
+  all2 = document.createElement('h1');
+  all4= document.createElement('input')
+  all3 =document.createElement('button');
+  all2.innerHTML = "Your Score is: " +finalscore;
+  all2.classList.add("#questionInput");
+  all2.textContent= "Please enter your initials"
+  all3.classList.add('startbutton2');
+  all4.classList.add("input")
+  all.appendChild(all1);
+  all.appendChild(all4)
+  all1.appendChild(all2);
+  all.appendChild(all3);
+  all3.innerHTML = "Save your score?";
 
-  if (storedScores !== null || storedNames !== null) {
-    namearray = storedNames;
-    scorearray= storedScores
-}
-}
-
-  //compute final score
-  function getScore(){
-    var finalscore = score * 25
-    console.log(finalscore)
-    var finalseconds = secondsLeft;
-    clearTimeout(totalTimeInterval);
-    timer.textContent =  "Clock stopped at: " + finalseconds ;
-    all.innerHTML = null;
-    all1 = document.createElement('div');
-    all2 = document.createElement('h1');
-    all4= document.createElement('input')
-    all3 =document.createElement('button');
-    all2.innerHTML = "Your Score is: " +finalscore;
-    all2.classList.add("#questionInput");
-    all3.classList.add('startbutton2');
-    all4.classList.add("input")
-    all.appendChild(all1);
-    all.appendChild(all4)
-    all1.appendChild(all2);
-    all.appendChild(all3);
-    all3.innerHTML = "Save your score?";
- 
-  //savescore to local storage
+//savescore to local storage
   all3.onclick= function savescore(event){
-    event.preventDefault();
-    var namearray = []
-    var scorearray =[]
-    var all4a = document.querySelector(".input").value
-    var savescore1= finalscore
-    if (all4a === "" || savescore1 === "") {
-      return;
-    }
-    
-    scorearray.push(savescore1);
-    namearray.push(all4a)
-    localStorage.setItem("all4a", JSON.stringify (namearray))
-    localStorage.setItem("savescore1", JSON.stringify(scorearray));
-    console.log(namearray)
-    console.log(scorearray)
-    renderscore()
+  event.preventDefault();
+  var all4a = document.querySelector(".input").value
+  var savescore1= finalscore
+  if (all4a === "" || savescore1 === "") {
+    return;
+  }
+  var gamername = all4a + " " +savescore1
   
-  //renderscore
-  function renderscore() {all.innerHTML=null;
-    all1 = document.createElement('div');
-    all.appendChild(all1);
-    
-    for (var i = 0; i < namearray.length; i++) {
-      var namearray1 = namearray[i];
-      var scorearray1 = scorearray[i]
-    
-      console.log(namearray1)
-      console.log(scorearray1)
-    
-      all2 = document.createElement('h1');
-      all2.setAttribute("id", "name");
-      all2.classList.add("finalscores1")
-      all2.textContent = namearray1;
-      all2.setAttribute("data-index", i);
-    
-      all3 = document.createElement('h1');
-      all3.setAttribute("id", "score");
-      all3.classList.add("finalscores1")
-      all3.textContent = scorearray1;
-      all3.setAttribute("data-index", i);
-    
-      all1.appendChild(all2);
-      all1.appendChild(all3);
-      }
-    }
-    }
-}
+  scorearray.push(gamername);
+  localStorage.setItem("scorearray", JSON.stringify (scorearray))
+  console.log(scorearray)
+  
+  renderscore()
 
+//renderscore
+function renderscore() {all.innerHTML=null;
+  all1 = document.createElement('div');
+  all.appendChild(all1);
+  
+  for (var i = 0; i < scorearray.length; i++) {
+    var scorearray1 = scorearray[i];
+  
+    console.log(scorearray1)
+  
+    all2 = document.createElement('h1');
+    all2.setAttribute("id", "name");
+    all2.classList.add("finalscores1")
+    all2.textContent = scorearray1;
+    all2.setAttribute("data-index", i);
+    all1.appendChild(all2);
+    }
+  }
+}
+}

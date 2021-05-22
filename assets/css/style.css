@@ -146,8 +146,8 @@ main{
 
 input{
     display: block;
-    width: 100%;
-    border: none;
+    width: 30%;
+    border: black 2px;
     border-bottom: 1px solid #bfbfbf;
     box-sizing: border-box;
     font-weight: 700;
@@ -161,6 +161,8 @@ input{
     padding-bottom: 5px;
     -webkit-appearance: none;
     background: 0 0;
+    margin: 10px auto;
+    
 }
 
 .starter h1{
@@ -168,5 +170,4 @@ input{
     border-width: 3px;
     width: 50%;
     margin: auto;
-    display: flex;
 }
