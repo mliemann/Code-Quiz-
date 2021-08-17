@@ -1,4 +1,4 @@
-link to application: https://mliemann.github.io/UNCC-Homework4-Javascript/
+link to application: https://mliemann.github.io/Code-Quiz-/
 
 ![Picture of deployed application](./assets/Capture4.PNG)
 
